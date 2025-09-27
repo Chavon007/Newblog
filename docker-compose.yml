@@ -1,0 +1,24 @@
+# docker-compose.yml
+services:
+  backend:
+    build: ./server
+    container_name: newsweb-backend
+    restart: always
+    env_file:
+      - ./server/.env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    container_name: news-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
