@@ -125,7 +125,10 @@ export default function NewsFeed({
                 : article.content;
 
             return (
-              <div key={article._id} className="w-[100%] h-auto pb-[10px]">
+              <div
+                key={article._id}
+                className="w-[95%] mx-auto h-auto pb-[10px]"
+              >
                 {article.urlToImage && (
                   <img
                     src={article.urlToImage}
