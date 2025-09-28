@@ -1,8 +1,8 @@
-# docker-compose.yml
+version: "3.9"
 services:
   backend:
     build: ./server
-    container_name: newsweb-backend
+    container_name: newsblog-backend
     restart: always
     env_file:
       - ./server/.env
@@ -10,10 +10,18 @@ services:
       - "5000:5000"
     depends_on:
       - mongo
+    command: ["npm", "start"]   
+
+  frontend:
+    build: ./client
+    container_name: newsblog-frontend
+    restart: always
+    ports:
+      - "3000:80"
 
   mongo:
     image: mongo:6.0
-    container_name: news-mongo
+    container_name: newsblog-mongo
     restart: always
     ports:
       - "27017:27017"

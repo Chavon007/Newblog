@@ -27,33 +27,37 @@ function Home() {
   return (
     <>
       <div className="container mx-auto">
-        <div className="w-[100%] h-[100vh] ">
+        <div className="w-[100%] h-[100vh]">
           <div className="bg-blue-600 p-[20px] text-base font-serif text-[#fff]">
             <h2>Hi {user.name}</h2>
           </div>
 
           <div className="bg-gray-100">
-            <div className=" w-[95%] md:p-[20px] flex justify-between lg:w-[80%] mx-auto">
+            <div className="w-[95%] md:p-[20px] flex justify-between lg:w-[80%] mx-auto">
               <button
-                className="bg-blue-400 mt-[20px] p-[6px] font-mons font-xs font-bold cursor-pointer text-[#fff] hover:bg-blue-700"
+                className={`mt-[20px] p-[6px] font-mons font-xs font-bold cursor-pointer text-[#fff] ${
+                  feed === "personal_feed" ? "bg-blue-700" : "bg-blue-400"
+                }`}
                 onClick={() => setFeed("personal_feed")}
               >
                 My Newsfeed
               </button>
+
               <button
-                className="bg-blue-400 mt-[20px] p-[6px] font-mons font-xs font-bold cursor-pointer text-[#fff] hover:bg-blue-700"
+                className={`mt-[20px] p-[6px] font-mons font-xs font-bold cursor-pointer text-[#fff] ${
+                  feed === "global_feed" ? "bg-blue-700" : "bg-blue-400"
+                }`}
                 onClick={() => setFeed("global_feed")}
               >
                 Global NewsFeed
               </button>
 
               <h1 className="bg-blue-400 mt-[20px] p-[6px] font-mons font-xs font-bold cursor-pointer text-[#fff] hover:bg-blue-700">
-                {" "}
                 <Logout />
               </h1>
             </div>
 
-            <div className="w-[95%]  md:w-[80%] mx-auto ">
+            <div className="w-[95%] md:w-[80%] mx-auto">
               {feed === "personal_feed" ? (
                 <PersonalizedNews />
               ) : (
@@ -66,4 +70,5 @@ function Home() {
     </>
   );
 }
+
 export default Home;

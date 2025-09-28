@@ -1,29 +1,19 @@
-# Build stage
-FROM node:20 AS build
+FROM node:20
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all frontend code
+# Copy source code
 COPY . .
 
-# Build React app
-RUN npm run build
+# Expose backend port
+EXPOSE 5000
 
-# Production stage
-FROM nginx:alpine
-
-# Copy build output to Nginx
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Run the server (production mode)
+CMD ["npm", "start"]
